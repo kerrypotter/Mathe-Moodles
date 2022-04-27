@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>Kostenfunktionen 1</title>
+    </head>
+    <body>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+    <div id = "Form">
+    <h1>Kostenfunktionen 1</h1>
+    <a>Kostenfunktionen Beispiel 1</a>
+    <form onsubmit="Beispiel1()" target="dummyframe">
+        <div>
+            <label for="coefficient1">Koeffizient 1</label><br>
+            <input id="coefficient1" type="text" name="coefficient1"><br>
+            <label for="coefficient2">Koeffizient 2</label><br>
+            <input id="coefficient2" type="text" name="coefficient2"><br>
+            <label for="coefficient3">Koeffizient 3</label><br>
+            <input id="coefficient3" type="text" name="coefficient3"><br>
+            <label for="coefficient4">Koeffizient 4</label><br>
+            <input id="coefficient4" type="text" name="coefficient4"><br>
+        </div>
+        <div>
+            <input type="submit" value="Send"><br>
+        </div>
+        <div id="Ergebnis1">Ergebnis:</div>
+    </form>
+    <a>Kostenfunktionen Beispiel 2</a>
+    <form onsubmit="Beispiel2()" target="dummyframe">
+        <div>
+            <label for="coefficientB2_1">Koeffizient 1</label><br>
+            <input id="coefficientB2_1" type="text" name="coefficient1"><br>
+            <label for="coefficientB2_2">Koeffizient 2</label><br>
+            <input id="coefficientB2_2" type="text" name="coefficient2"><br>
+            <label for="coefficientB2_3">Koeffizient 3</label><br>
+            <input id="coefficientB2_3" type="text" name="coefficient3"><br>
+            <label for="coefficientB2_4">Koeffizient 4</label><br>
+            <input id="coefficientB2_4" type="text" name="coefficient4"><br>
+        </div>
+        <div>
+            <input type="submit" value="Send">
+        </div>
+        <div id="Ergebnis2">Ergebnis:</div><br>
+        <a href="/">Hauptseite</a>
+    </form>
+    </div>
+    </body>
+    <style>
+        body {
+          background-color: #40434E;
+        }
+        div {
+          color: white;
+        }
+        #Form {
+          font-family: "Courier New", Courier, monospace;
+          font-size: 2vw;
+          letter-spacing: 2px;
+          word-spacing: 2px;
+          color: #FFFFFF;
+          font-weight: normal;
+          text-decoration: none solid rgb(68, 68, 68);
+          font-style: normal;
+          font-variant: normal;
+          text-transform: none;
+        }
+        a, a:active, a:visited, a:focus {
+            text-decoration:none;
+            color: #FFFFFF
+        }
+        a:hover {
+            text-decoration:none; 
+            color: gray
+        }
+    </style>
+    <script>
+        async function Beispiel1() {
+            var Ergebnisvariable = document.getElementById("Ergebnis1");
+            Ergebnisvariable.innerHTML = "Ergebnis: loading";
+            var coef1 = document.getElementById("coefficient1").value;
+            var coef2 = document.getElementById("coefficient2").value;
+            var coef3 = document.getElementById("coefficient3").value;
+            var coef4 = document.getElementById("coefficient4").value;
+            var Ergebnis = await fetch("/Kostenfunktionen/1/?coefficient1="+coef1+"&coefficient2="+coef2+"&coefficient3="+coef3+"&coefficient4="+coef4)
+            .then((response) => response.text())
+            .then((data) => {
+            console.log('Success:', data);
+            Ergebnisvariable.innerHTML = "Ergebnis: "+data;
+            });
+        };
+        async function Beispiel2() {
+            var Ergebnisvariable = document.getElementById("Ergebnis2");
+            Ergebnisvariable.innerHTML = "Ergebnis: loading";
+            var coef1 = document.getElementById("coefficientB2_1").value;
+            var coef2 = document.getElementById("coefficientB2_2").value;
+            var coef3 = document.getElementById("coefficientB2_3").value;
+            var coef4 = document.getElementById("coefficientB2_4").value; 
+            var Ergebnis = await fetch("/Kostenfunktionen/2/?coefficient1="+coef1+"&coefficient2="+coef2+"&coefficient3="+coef3+"&coefficient4="+coef4)
+            .then((response) => response.text())
+            .then((data) => {
+            console.log('Success:', data);
+            Ergebnisvariable.innerHTML = "Ergebnis: "+data;
+            });
+        };
+    </script>
+</html>
